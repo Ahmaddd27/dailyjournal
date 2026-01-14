@@ -1,7 +1,4 @@
-<?php
-//menyertakan code dari file koneksi
-include "koneksi.php";
-?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -134,9 +131,35 @@ include "koneksi.php";
           </a>
         </li>
         
-        <li class="nav-item">
-  <a class="nav-link" href="login.php" target="_blank">Login</a>
+<?php if (isset($_SESSION['username'])) { ?>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle fw-semibold"
+     href="#"
+     role="button"
+     data-bs-toggle="dropdown"
+     style="color:black">
+    <?= $_SESSION['username']; ?>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li>
+      <a class="dropdown-item" href="profile.php">
+        <i class="bi bi-person"></i> Profile
+      </a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <a class="dropdown-item text-danger" href="logout.php">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+    </li>
+  </ul>
 </li>
+<?php } else { ?>
+<li class="nav-item">
+  <a class="nav-link fw-semibold" href="login.php">Login</a>
+</li>
+<?php } ?>
+
   <!-- Theme Switcher -->
 <li class="nav-item d-flex align-items-center ms-3">
   <button id="darkBtn" class="btn btn-dark btn-sm me-2">
